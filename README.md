@@ -27,3 +27,6 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## :purple_heart:Nav Bar
+![Screenshot (25)](https://github.com/user-attachments/assets/00146669-1d38-4a2b-8048-71ab02be1d43)
