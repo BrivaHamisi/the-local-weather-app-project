@@ -25,6 +25,28 @@
       />
     </div>
     <hr class="border-white border-opacity-10 border w-full" />
+    <!-- More Details -->
+     <div class="max-w-screen-md w-full py-12">
+     <div class="mx-8 text-white">
+      <h2 class="mb-4">More Details</h2>
+      <div class="flex gap-10 overflox-x-scroll">
+        <div class="flex flex-col gap-4 items-center ">
+          Pressure: {{ (weatherData?.main.pressure / 1013.25).toFixed(2)  }} Atmospheres  | 
+          Humidity: {{ weatherData?.main.humidity }}% | Sea Level: {{ weatherData?.main.sea_level }} metres | Ground Level: {{ weatherData?.main.grnd_level }} metres | Wind Speed: {{ weatherData?.wind.speed }}
+        </div>
+      </div>
+     </div>
+    </div>
+    <hr class="border-white border-opacity-10 border w-full" />
+    <!-- Coordinates -->
+     <div class="max-w-screen-md w-full py-12">
+     <div class="mx-8 text-white">
+      <h2 class="mb-4">Coordinates</h2>
+      <div class="flex gap-4 items-center ">
+        Latitude: {{ weatherData?.coord.lat }}° | Longitude: {{ weatherData?.coord.lon }}°
+      </div>
+     </div>
+    </div>
   </div>
 </template>
 
