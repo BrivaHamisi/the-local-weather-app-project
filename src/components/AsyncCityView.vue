@@ -43,7 +43,7 @@ const getWeatherData = async () => {
     const state = route.query.state || '';
 
     const response = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city},${state}&APPID=49ac36a5f45a2d371b2bae5347b188f6`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city},${state}&APPID=49ac36a5f45a2d371b2bae5347b188f6`
     );
 
     weatherData.value = response.data;
@@ -101,6 +101,6 @@ const formattedFeelsLike = computed(() => {
 // Computed property for weather icon URL
 const weatherIconUrl = computed(() => {
   if (!weatherData.value) return '';
-  return `http://openweathermap.org/img/wn/${weatherData.value.weather[0].icon}@2x.png`;
+  return `https://openweathermap.org/img/wn/${weatherData.value.weather[0].icon}@2x.png`;
 });
 </script>
