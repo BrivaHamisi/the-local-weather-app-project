@@ -1,12 +1,16 @@
 <template>
     <div v-for="cityObject in savedCities" :key="cityObject.id">
-        <CityCard :city="cityObject.city" :state="cityObject.state" :weather="cityObject.weather"/>
+        <CityCard :city="cityObject.city" :state="cityObject.state" :weather="cityObject.weather" @click="goToCityView(cityObject)"/>
     </div>
+    <p v-if="savedCities.length === 0">
+        No Locations added. To start tracking a location, search iin the field above
+    </p>
 </template>
 
 <script setup>
 import axios from "axios";
 import { ref } from "vue"
+import { useRoute, useRouter } from "vue-router";
 import CityCard from "../components/CityCard.vue"
   
 const savedCities = ref([]);
@@ -38,4 +42,21 @@ const getCities = async () => {
     }
 };
 await getCities();
+
+const router = useRouter();
+const goToCityView = (cityObject) => {
+    console.log(cityObject);
+    router.push({
+        name : "cityView",
+        params: {
+            city: cityObject.city,
+            state: cityObject.state,
+            // weather: cityObject.weather
+            weather: JSON.stringify(cityObject.weather)
+        }
+    });
+    console.log(city, state, weather);
+    // Navigate to CityView with city, state, and weather data
+    console.log("Navigating to city view with:", cityObject.city, cityObject.state);
+};
 </script>
