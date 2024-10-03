@@ -32,7 +32,7 @@
       <div class="flex gap-10 overflox-x-scroll">
         <div class="flex flex-col gap-4 items-center ">
           Pressure: {{ (weatherData?.main.pressure / 1013.25).toFixed(2)  }} Atmospheres  | 
-          Humidity: {{ weatherData?.main.humidity }}% | Sea Level: {{ weatherData?.main.sea_level }} metres | Ground Level: {{ weatherData?.main.grnd_level }} metres | Wind Speed: {{ weatherData?.wind.speed }}
+          Humidity: {{ weatherData?.main.humidity }}% | Sea Level: {{ weatherData?.main.sea_level }} metres | Ground Level: {{ weatherData?.main.grnd_level }} metres | Wind Speed: {{ weatherData?.wind.speed }} m/s
         </div>
       </div>
      </div>
@@ -47,12 +47,16 @@
       </div>
      </div>
     </div>
+    <div class="flex items-center gap-2 py-12 text-white cursor-pointer duration-150 hover:text-red-500" @click="removeCity">
+      <i class="fa-solid fa-trash"></i>
+      <p>Remove City</p>
+    </div>
   </div>
 </template>
 
 <script setup>
 import axios from "axios";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { computed, ref, onMounted } from 'vue';
 
 const route = useRoute();
@@ -125,4 +129,22 @@ const weatherIconUrl = computed(() => {
   if (!weatherData.value) return '';
   return `https://openweathermap.org/img/wn/${weatherData.value.weather[0].icon}@2x.png`;
 });
+
+// Function to remove city from local storage
+const router = useRouter()
+const removeCity = () => {
+  console.log("Removing city from local storage:Button Clicked")
+  const cities = JSON.parse(localStorage.getItem('savedCities') || '[]');
+
+  // Find the index of the city object by comparing the city name
+  const index = cities.findIndex((cityObject) => cityObject.city === route.params.city);
+
+  if (index > -1) {
+    cities.splice(index, 1);  // Remove the city from the array
+    localStorage.setItem('savedCities', JSON.stringify(cities));  // Save the updated array back to localStorage
+  }
+
+  // Redirect to home page
+  router.push('/');
+};
 </script>

@@ -3,7 +3,7 @@
         <div class="flex flex-col flex-1">
             <h2 class="text-3xl ml-5">{{ city }}</h2>
             <h3 class="ml-5">{{ state }}</h3>
-            <p class="text-lg ml-5 font-light ">{{ weather.weather[0].description }}</p>
+            <p class="text-sm ml-5 font-light ">{{ weather.weather[0].description }}</p>
             <!-- Display humidity and wind speed -->
             <p class="text-sm ml-5 mt-10 font-light">Humidity: {{ weather.main.humidity }}%</p>
              <p class="text-sm ml-5 font-light">Wind: {{ weather.wind.speed }} m/s</p>
