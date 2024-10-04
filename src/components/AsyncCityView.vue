@@ -130,6 +130,9 @@ const weatherIconUrl = computed(() => {
   return `https://openweathermap.org/img/wn/${weatherData.value.weather[0].icon}@2x.png`;
 });
 
+//Flicker Delay
+await new Promise((res) => setTimeout(res, 100));
+
 // Function to remove city from local storage
 const router = useRouter()
 const removeCity = () => {
